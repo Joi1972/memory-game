@@ -1,0 +1,75 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.square {
+  background-color: lightgray;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+/* Highlighted square with correct color */
+.square.blue   { background-color: blue   !important; }
+.square.red    { background-color: red    !important; }
+.square.green  { background-color: green  !important; }
+.square.yellow { background-color: yellow !important; }
+
+/* Countdown bar */
+#timerBarContainer {
+  width: 300px;
+  height: 10px;
+  border: 1px solid #000;
+  margin: 10px auto;
+  background-color: #eee;
+  visibility: hidden;
+}
+
+#timerBar {
+  height: 100%;
+  width: 0%;
+  background-color: orange;
+}
+
+/* Color selector */
+#colorSelector {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.color-choice {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  border: 2px solid #000;
+  cursor: pointer;
+  opacity: 0.6;
+  border-radius: 4px;
+}
+
+.color-choice[data-color="blue"]   { background-color: blue; }
+.color-choice[data-color="red"]    { background-color: red; }
+.color-choice[data-color="green"]  { background-color: green; }
+.color-choice[data-color="yellow"] { background-color: yellow; }
+
+.color-choice.selected {
+  outline: 3px solid black;
+  opacity: 1;
+}
+
+/* Button style */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Grid Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+     <h1>Memory Grid Game</h1>
+  <div id="grid"></div>
+  
+  <div id="colorSelector">
+    <p>Select color:</p>
+    <div class="color-choice" data-color="blue"></div>
+    <div class="color-choice" data-color="red"></div>
+    <div class="color-choice" data-color="green"></div>
+    <div class="color-choice" data-color="yellow"></div>
+  </div>
+
+  <button id="showBtn">Show</button>
+  <button id="goBtn" disabled>Go</button>
+
+  
+
+  <div id="timerBarContainer">
+    <div id="timerBar"></div>
+  </div>
+
+ 
+
+  <p id="message"></p>
+  <p>Score: <span id="score">0</span></p>
+
+ 
+
+  <script src="script.js"></script>
+</body>
+
+</html>
