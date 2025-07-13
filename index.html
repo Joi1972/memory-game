@@ -8,31 +8,32 @@
 </head>
 <body>
     
-   <h1>Memory Grid Game</h1>
-  
-  <div id="grid"></div>
+  <h1>Memory Grid Game</h1>
+
+  <div id="statusBar">
+    <p>Level: <span id="levelDisplay">1</span></p>
+    <p>Score: <span id="score">0</span></p>
+  </div>
+
+  <div id="message" class="game-message"></div>
+
+  <div id="gridContainer" style="position: relative;">
+    <div id="gridFlash" class="grid-flash"></div>
+    <div id="grid"></div>
+  </div>
 
   <div id="timerBarContainer">
     <div id="timerBar"></div>
   </div>
 
   <div id="colorSelector">
-    
-    <div class="color-choice" data-color="yellow"></div>
+    <div class="color-choice" data-color="blue"></div>
     <div class="color-choice" data-color="red"></div>
     <div class="color-choice" data-color="green"></div>
-    <div class="color-choice" data-color="blue"></div>
+    <div class="color-choice" data-color="yellow"></div>
   </div>
 
-  <button id="showBtn">New</button>
-  <button id="goBtn" disabled>Go!</button>
-
-  
-
-  <p id="message"></p>
-
-  <p>Level: <span id="levelDisplay">1</span></p>
-  <p>Score: <span id="score">0</span></p>
+  <button id="startBtn">Start</button>
 
   <script src="script.js"></script>
 </body>
