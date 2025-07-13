@@ -73,3 +73,18 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+#showBtn,
+#goBtn {
+  padding: 12px 28px;
+  font-size: 18px;
+  margin: 10px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  background-color: white;
+  cursor: pointer;
+}
+
+#showBtn:hover,
+#goBtn:hover {
+  background-color: #f0f0f0;
+}
