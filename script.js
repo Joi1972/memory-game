@@ -32,7 +32,9 @@ window.onload = function () {
   colorBoxes.forEach(box => {
     box.onclick = () => {
       if (!colorSelectionEnabled) return;
-      colorBoxes.forEach(b => b.classList.remove('selected', 'pulse-color'));
+
+      /* keep pulse-color on all boxes; only remove .selected */
+      colorBoxes.forEach(b => b.classList.remove('selected'));
       box.classList.add('selected');
       selectedColor = box.dataset.color;
     };
@@ -41,13 +43,7 @@ window.onload = function () {
   /* ---------- Start / Go button ---------- */
   startBtn.onclick = () => {
     if (!waitingForFirstClick) {
-      resetGrid();
-      resetSelector();
-      clearMessage();
-      targets               = generateTargets(level);
-      revealTargets();
-      waitingForFirstClick  = true;
-      startBtn.textContent  = 'Go!';
+      startRound();
     } else {
       hideTargetsInstant();
       startCountdown();
@@ -55,6 +51,16 @@ window.onload = function () {
       startBtn.classList.remove('pulse');
     }
   };
+
+  function startRound() {
+    resetGrid();
+    resetSelector();
+    clearMessage();
+    targets               = generateTargets(level);
+    revealTargets();
+    waitingForFirstClick  = true;
+    startBtn.textContent  = 'Go!';
+  }
 
   /* ---------- Helpers ---------- */
   function generateTargets(lv) {
@@ -107,14 +113,10 @@ window.onload = function () {
     }, 30); // 3 s total
   }
 
-  /* ---------- Restartable flash helper ---------- */
+  /* ---------- Flash helper ---------- */
   function triggerFlash(isCorrect) {
-    // remove any previous class
     gridFlash.classList.remove('flash-correct', 'flash-wrong');
-
-    // force reflow so animation restarts even if same class
-    void gridFlash.offsetWidth;
-
+    void gridFlash.offsetWidth;              // reset animation
     gridFlash.classList.add(isCorrect ? 'flash-correct' : 'flash-wrong');
   }
 
@@ -147,9 +149,11 @@ window.onload = function () {
     updateHUD();
     checkLevelChange();
     selectedColor = '';
-    resetSelector();
+    colorBoxes.forEach(b => b.classList.remove('selected'));
 
-    if (targets.every(t => t.found)) endRound();
+    /* keep pulsing until round truly ends */
+    const allFound = targets.every(t => t.found);
+    if (allFound) endRound();
   }
 
   /* ---------- End round ---------- */
@@ -159,6 +163,7 @@ window.onload = function () {
     startBtn.disabled     = false;
     startBtn.textContent  = 'Start';
     startBtn.classList.add('pulse');
+    colorBoxes.forEach(b => b.classList.remove('pulse-color','selected'));
     targets.forEach(t => {
       if (t.found) fadeOutSquare(grid.children[t.index], t.color, 1000);
     });
@@ -181,7 +186,7 @@ window.onload = function () {
   }
 
   function resetSelector() {
-    colorBoxes.forEach(b => b.classList.remove('selected', 'pulse-color'));
+    colorBoxes.forEach(b => b.classList.remove('selected','pulse-color'));
   }
 
   function showMessage(text, type) {
